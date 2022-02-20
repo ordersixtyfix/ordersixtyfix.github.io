@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>DNS Nedir, Nasıl Çalışır? | order6tyfix</title>
+  <meta name="author" content="order6tyfix">
+  
+  <meta name="description" content="DNS(Domain Name System), yani alan adı sistemi. Basitçe alan adlarını IP adreslerine çeviren, uygulama katmanında çalışan bir protokoldür.
+Eğer www.su">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="DNS Nedir, Nasıl Çalışır?"/>
+  <meta property="og:site_name" content="order6tyfix"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">order6tyfix</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Arsiv
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Kategoriler
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Etiketler
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>Hakkımda
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> DNS Nedir, Nasıl Çalışır?</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>DNS(Domain Name System), yani alan adı sistemi. Basitçe alan adlarını IP adreslerine çeviren, uygulama katmanında çalışan bir protokoldür.</p>
+<p>Eğer <a target="_blank" rel="noopener" href="http://www.sub.example.com/">www.sub.example.com</a> alan adını parçalara ayırmak istersek bunlar şu şekilde sıralanabilir.</p>
+<pre><code>www = Host
+sub = Sub Domain
+example = Domain
+com = Top Level Domain(TLD)    
+</code></pre>
+</br>
+
+<h1 id="DNS-Mimarisi"><a href="#DNS-Mimarisi" class="headerlink" title="DNS Mimarisi"></a>DNS Mimarisi</h1><p>Bilgisayarın DNS adresini IP adresine çevirebilmesi ilk iletişim kurması gereken sunucu <a target="_blank" rel="noopener" href="https://www.computerhope.com/jargon/d/dns-resolver.htm">Resolver Server</a>‘dır. Bu sunucular çoğu zaman ISP(Internet Service Provider) yani internet servis sağlayıcınız tarafından sağlanır.</p>
+</br>
+
+<p>Resolver Server alan adını parçalara ayırır. İlk önce <a target="_blank" rel="noopener" href="https://www.iana.org/domains/root/servers">Root Name Server</a> ile iletişime geçerek <code>.com</code> için TLD bilgisini alır (Root name server’ların IP adresleri resolver’ların içine doğrudan kodlanmıştır. Resolver sunucusunun admini root server listelerini güncel tutarak sistemin eksiksiz çalışmasını sağlar.). Bu bilgiye göre <a target="_blank" rel="noopener" href="https://dnsmap.io/articles/what-are-top-level-domain-(tld)-name-servers">TLD Server</a> ile iletişime geçerek alan adını hangi <a target="_blank" rel="noopener" href="https://www.dnsknowledge.com/whatis/authoritative-name-server/">Authorative Name Server</a>‘dan alması gerektiği bilgisini alır. Eğer alt alan adları(Sub domain) varsa bir önceki cümledeki adımları tekrarlar.<br></br><br>Son adımda resolver,  Authoritative Name Server’dan gerekli bilgileri aldıktan sonra IP adresini istemciye yani bizim bilgisayarımıza gönderir. Biz de bağlantı sağlarız.</p>
+</br>
+
+
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2022/02/16/THM-Dogcat-Cozum/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> önceki yazı</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Ana menü</a>
+    
+    <a href="/2022/01/20/HTB-Knife-Cozum/" type="button" class="btn btn-default ">sonraki yazı<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2022-02-01 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Network-Ag/">Network(Ağ)<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/DNS/">DNS<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+I'm gonna be on television.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎YUKARI</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+   </html>

