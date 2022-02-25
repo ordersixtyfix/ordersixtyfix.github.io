@@ -133,6 +133,40 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
+			<a href="/2022/02/23/THM-Plotted-TMS-Cozum/" >THM Plotted-TMS Çözüm</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2022-02-23  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h1 id="Recon-Bilgi-Toplama"><a href="#Recon-Bilgi-Toplama" class="headerlink" title="Recon(Bilgi Toplama)"></a>Recon(Bilgi Toplama)</h1><hr>
+<p>Nmap ve whatweb taramasıyla başlıyorum.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV 10.10.106.251</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-22 23:03 +03</span><br><span class="line">Nmap scan report for 10.10.106.251</span><br><span class="line">Host is up (0.097s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT    STATE SERVICE VERSION</span><br><span class="line">22/tcp  open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp  open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">445/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 19.88 seconds</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">whatweb 10.10.106.251:445/management</span><br><span class="line">/usr/lib/ruby/vendor_ruby/target.rb:188: warning: URI.escape is obsolete</span><br><span class="line">/usr/lib/ruby/vendor_ruby/target.rb:188: warning: URI.escape is obsolete</span><br><span class="line">http://10.10.106.251:445/management [301 Moved Permanently] Apache[2.4.41], Country[RESERVED][ZZ], HTTPServer[Ubuntu Linux][Apache/2.4.41 (Ubuntu)], IP[10.10.106.251], RedirectLocation[http://10.10.106.251:445/management/], Title[301 Moved Permanently]</span><br><span class="line">http://10.10.106.251:445/management/ [200 OK] Apache[2.4.41], Cookies[PHPSESSID], Country[RESERVED][ZZ], Email[oretnom23@gmail.com], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.41 (Ubuntu)], IP[10.10.106.251], JQuery, Script, Title[Traffic Offense Management System]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="EXPLOITATION-Sistemi-Somurme"><a href="#EXPLOITATION-Sistemi-Somurme" class="headerlink" title="EXPLOITATION(Sistemi Sömürme)"></a>EXPLOITATION(Sistemi Sömürme)</h1><hr>
+<p>80 ve 445 portlarında apache sunucu barınıyor ve site <code>PHPSESSID</code>‘den anladığım kadarıyla php ile kodlanmış. Tarayıcıda siteyi açtığımda öntanımlı apache sayfası var.<code>dirb</code> ile sunucudaki alt dizinleri listelemek mantıklı.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dirb 10.10.106.251</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GENERATED WORDS: 4612                                                          </span><br><span class="line"></span><br><span class="line">---- Scanning URL: http://10.10.106.251/ ----</span><br><span class="line">==&gt; DIRECTORY: http://10.10.106.251/admin/                                           </span><br><span class="line">+ http://10.10.106.251/index.html (CODE:200|SIZE:10918)                              </span><br><span class="line">+ http://10.10.106.251/passwd (CODE:200|SIZE:25)                                     </span><br><span class="line">+ http://10.10.106.251/server-status (CODE:403|SIZE:278)                             </span><br><span class="line">+ http://10.10.106.251/shadow (CODE:200|SIZE:25)                                     </span><br><span class="line">                                                      </span><br></pre></td></tr></table></figure>
+	
+	</div>
+  <a type="button" href="/2022/02/23/THM-Plotted-TMS-Cozum/#more" class="btn btn-default more">Okumaya devam et</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
 			<a href="/2022/02/16/THM-Dogcat-Cozum/" >THM Dogcat Çözüm</a>
 		</h3>
 		</div>
@@ -294,7 +328,7 @@ com = Top Level Domain(TLD)
 		<h4>kategoriler</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/CTF-Cozum/">CTF Çözüm<span>2</span></a></li>
+			<li><a href="/categories/CTF-Cozum/">CTF Çözüm<span>3</span></a></li>
 		
 			<li><a href="/categories/Network-Ag/">Network(Ağ)<span>1</span></a></li>
 		
@@ -308,21 +342,27 @@ com = Top Level Domain(TLD)
 		<h4>etiketler</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Linux/">Linux<span>2</span></a></li>
+			<li><a href="/tags/RCE/">RCE<span>1</span></a></li>
 		
 			<li><a href="/tags/Php-filters/">Php filters<span>1</span></a></li>
 		
-			<li><a href="/tags/RCE/">RCE<span>1</span></a></li>
+			<li><a href="/tags/Linux/">Linux<span>2</span></a></li>
 		
-			<li><a href="/tags/Docker/">Docker<span>1</span></a></li>
+			<li><a href="/tags/SUID-GUID/">SUID, GUID<span>1</span></a></li>
 		
-			<li><a href="/tags/Ruby/">Ruby<span>1</span></a></li>
+			<li><a href="/tags/SQLi/">SQLi<span>1</span></a></li>
+		
+			<li><a href="/tags/DNS/">DNS<span>1</span></a></li>
 		
 			<li><a href="/tags/Log-Poisoning/">Log Poisoning<span>1</span></a></li>
 		
+			<li><a href="/tags/Docker/">Docker<span>1</span></a></li>
+		
 			<li><a href="/tags/LFI/">LFI<span>1</span></a></li>
 		
-			<li><a href="/tags/DNS/">DNS<span>1</span></a></li>
+			<li><a href="/tags/Crontab/">Crontab<span>1</span></a></li>
+		
+			<li><a href="/tags/Ruby/">Ruby<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -334,6 +374,10 @@ com = Top Level Domain(TLD)
 <div class="widget">
   <h4>en son gönderiler</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2022/02/23/THM-Plotted-TMS-Cozum/" ><i class="fa fa-file-o"></i>THM Plotted-TMS Çözüm</a>
+      </li>
     
       <li>
         <a href="/2022/02/16/THM-Dogcat-Cozum/" ><i class="fa fa-file-o"></i>THM Dogcat Çözüm</a>
@@ -363,7 +407,7 @@ com = Top Level Domain(TLD)
 	
 		<li><i class="fa fa-github"></i><a href="https://github.com/blackshow/hexo-theme-freemind.386" title="Freemind.386's Github repository." target="_blank">Freemind.386</a></li>
 	
-		<li><i class="fa fa-github"></i><a href="http://www.github.com/blackshow" title="My Github account." target="_blank">My Github</a></li>
+		<li><i class="fa fa-github"></i><a href="https://github.com/ordersixtyfix" title="My Github account." target="_blank">My Github</a></li>
 	
 	</ul>
 </div>
