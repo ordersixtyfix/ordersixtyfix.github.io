@@ -10,11 +10,10 @@
   <meta name="author" content="order6tyfix">
   
   <meta name="description" content="Recon(Bilgi Toplama)
-Nmap ve whatweb taramasıyla başlıyorum.
+Nmap taramasıyla başlıyorum.
 1234567891011121314nmap -sS -sV 10.10.106.251Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-22 23:03 +03Nmap scan report for 10.10.106.251Host is up (0.097s latency).Not shown: 997 closed portsPORT    STATE SERVICE VERSION22/tcp  open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)80/tcp  open  http    Apache httpd 2.4.41 ((Ubuntu))445/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernelService detection performed. Please report any incorrect results at https://nmap.org/submit/ .Nmap done: 1 IP address (1 host up) scanned in 19.88 seconds
-123456whatweb 10.10.106.251:445/management/usr/lib/ruby/vendor_ruby/target.rb:188: warning: URI.escape is obsolete/usr/lib/ruby/vendor_ruby/target.rb:188: warning: URI.escape is obsoletehttp://10.10.106.251:445/management [301 Moved Permanently] Apache[2.4.41], Country[RESERVED][ZZ], HTTPServer[Ubuntu Linux][Apache/2.4.41 (Ubuntu)], IP[10.10.106.251], RedirectLocation[http://10.10.106.251:445/management/], Title[301 Moved Permanently]http://10.10.106.251:445/management/ [200 OK] Apache[2.4.41], Cookies[PHPSESSID], Country[RESERVED][ZZ], Email[oretnom23@gmail.com], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.41 (Ubuntu)], IP[10.10.106.251], JQuery, Script, Title[Traffic Offense Management System]
 
-EXPLOITATION(Sistemi Sömürme)
+
 80 ve 445 portlarında apache sunucu barınıyor ve site PHPSESSID‘den anladığım kadarıyla php ile kodlanmış. Tarayıcıda siteyi açtığımda öntanımlı apache sayfası var.dirb ile sunucudaki alt dizinleri listelemek mantıklı.
 12345678910111213dirb 10.10.106.251GENERATED WORDS: 4612                                                          ---- Scanning URL: http://10.10.106.251/ ----==&amp;gt; DIRECTORY: http://10.10.106.251/admin/                                           + http://10.10.106.251/index.html (CODE:200|SIZE:10918)                              + http://10.10.106.251/passwd (CODE:200|SIZE:25)                                     + http://10.10.106.251/server-status (CODE:403|SIZE:278)                             + http://10.10.106.251/shadow (CODE:200|SIZE:25)">
   
@@ -137,18 +136,20 @@ var _hmt = _hmt || [];
 	  		
 
 	  <h1 id="Recon-Bilgi-Toplama"><a href="#Recon-Bilgi-Toplama" class="headerlink" title="Recon(Bilgi Toplama)"></a>Recon(Bilgi Toplama)</h1><hr>
-<p>Nmap ve whatweb taramasıyla başlıyorum.</p>
+<p>Nmap taramasıyla başlıyorum.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV 10.10.106.251</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-22 23:03 +03</span><br><span class="line">Nmap scan report for 10.10.106.251</span><br><span class="line">Host is up (0.097s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT    STATE SERVICE VERSION</span><br><span class="line">22/tcp  open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp  open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">445/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 19.88 seconds</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">whatweb 10.10.106.251:445/management</span><br><span class="line">/usr/lib/ruby/vendor_ruby/target.rb:188: warning: URI.escape is obsolete</span><br><span class="line">/usr/lib/ruby/vendor_ruby/target.rb:188: warning: URI.escape is obsolete</span><br><span class="line">http://10.10.106.251:445/management [301 Moved Permanently] Apache[2.4.41], Country[RESERVED][ZZ], HTTPServer[Ubuntu Linux][Apache/2.4.41 (Ubuntu)], IP[10.10.106.251], RedirectLocation[http://10.10.106.251:445/management/], Title[301 Moved Permanently]</span><br><span class="line">http://10.10.106.251:445/management/ [200 OK] Apache[2.4.41], Cookies[PHPSESSID], Country[RESERVED][ZZ], Email[oretnom23@gmail.com], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.41 (Ubuntu)], IP[10.10.106.251], JQuery, Script, Title[Traffic Offense Management System]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h1 id="EXPLOITATION-Sistemi-Somurme"><a href="#EXPLOITATION-Sistemi-Somurme" class="headerlink" title="EXPLOITATION(Sistemi Sömürme)"></a>EXPLOITATION(Sistemi Sömürme)</h1><hr>
+
 <p>80 ve 445 portlarında apache sunucu barınıyor ve site <code>PHPSESSID</code>‘den anladığım kadarıyla php ile kodlanmış. Tarayıcıda siteyi açtığımda öntanımlı apache sayfası var.<code>dirb</code> ile sunucudaki alt dizinleri listelemek mantıklı.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dirb 10.10.106.251</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GENERATED WORDS: 4612                                                          </span><br><span class="line"></span><br><span class="line">---- Scanning URL: http://10.10.106.251/ ----</span><br><span class="line">==&gt; DIRECTORY: http://10.10.106.251/admin/                                           </span><br><span class="line">+ http://10.10.106.251/index.html (CODE:200|SIZE:10918)                              </span><br><span class="line">+ http://10.10.106.251/passwd (CODE:200|SIZE:25)                                     </span><br><span class="line">+ http://10.10.106.251/server-status (CODE:403|SIZE:278)                             </span><br><span class="line">+ http://10.10.106.251/shadow (CODE:200|SIZE:25)                                     </span><br><span class="line">                                                      </span><br></pre></td></tr></table></figure>
 <span id="more"></span>
 
 <p>İşe yarar bir şey yok. Bir de 445 portuna göz atacağım.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DIRECTORY: http://10.10.106.251:445/management/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dirb 10.10.106.251:445</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DIRECTORY: http://10.10.106.251:445/management/</span><br></pre></td></tr></table></figure>
+<p>mangement dizini altında bir web sitesi barınıyor.</p>
+<h1 id="EXPLOITATION-Sistemi-Somurme"><a href="#EXPLOITATION-Sistemi-Somurme" class="headerlink" title="EXPLOITATION(Sistemi Sömürme)"></a>EXPLOITATION(Sistemi Sömürme)</h1><hr>
 <p>Bu dizin işe yarayacak gibi. Login’e tıkladığımda admin giriş paneli geliyor karşıma. İlk denediğim şey admin-admin ile giriş yapmaya çalışmak ama işe yaramıyor. SQLi işe yarayabilir.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username : admin&#x27; OR &#x27;1&#x27;=&#x27;1-- -</span><br><span class="line">password : $RASTGELE</span><br></pre></td></tr></table></figure>
 
@@ -175,7 +176,8 @@ var _hmt = _hmt || [];
 
     
     
-    <a type="button" class="btn btn-default disabled"><i class="fa fa-arrow-circle-o-left"></i>önceki yazı</a>
+    <a href="/2022/02/25/THM-Borderlands/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> önceki yazı</a>
     
 
     <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Ana menü</a>

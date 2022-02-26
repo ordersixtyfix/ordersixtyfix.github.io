@@ -147,7 +147,12 @@ var _hmt = _hmt || [];
   <div class="row">
 	
 	
-		
+		<h1 id="RECON-BILGI-TOPLAMA"><a href="#RECON-BILGI-TOPLAMA" class="headerlink" title="RECON(BİLGİ TOPLAMA)"></a>RECON(BİLGİ TOPLAMA)</h1><hr>
+<p>Detaylı bir nmap taramsıyla makineyi çözümlemeye başlıyorum. <code>nmap -sS -sV -sC 10.10.213.229</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-25 23:37 +03</span><br><span class="line">Nmap scan report for 10.10.213.229</span><br><span class="line">Host is up (0.091s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT     STATE  SERVICE    VERSION</span><br><span class="line">22/tcp   open   ssh        OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp   open   http       nginx 1.14.0 (Ubuntu)</span><br><span class="line">8080/tcp closed http-proxy</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 15.50 seconds</span><br><span class="line">root@h4ckmachine:/# nmap -sS -sV -sC 10.10.213.229</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-25 23:42 +03</span><br><span class="line">Nmap scan report for 10.10.213.229</span><br><span class="line">Host is up (0.086s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT     STATE  SERVICE    VERSION</span><br><span class="line">22/tcp   open   ssh        OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 f6:50:6e:5a:6f:05:7b:ea:04:26:95:02:e5:a4:a6:37 (RSA)</span><br><span class="line">|   256 09:d4:4c:c1:c2:e9:aa:b0:f9:14:73:88:8f:7a:e0:ab (ECDSA)</span><br><span class="line">|_  256 f1:34:69:76:df:83:3b:78:2d:04:a6:5e:ba:00:b5:4b (ED25519)</span><br><span class="line">80/tcp   open   http       nginx 1.14.0 (Ubuntu)</span><br><span class="line">| http-cookie-flags: </span><br><span class="line">|   /: </span><br><span class="line">|     PHPSESSID: </span><br><span class="line">|_      httponly flag not set</span><br><span class="line">| http-git: </span><br><span class="line">|   10.10.213.229:80/.git/</span><br><span class="line">|     Git repository found!</span><br><span class="line">|     .git/config matched patterns &#x27;user&#x27;</span><br><span class="line">|     Repository description: Unnamed repository; edit this file &#x27;description&#x27; to name the...</span><br><span class="line">|_    Last commit message: added mobile apk for beta testing. </span><br><span class="line">|_http-server-header: nginx/1.14.0 (Ubuntu)</span><br><span class="line">|_http-title: Context Information Security - HackBack 2</span><br><span class="line">8080/tcp closed http-proxy</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 17.42 seconds</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>80 portunda çalışan bir nginx web sunucu var ayrıca 8080 portunda kapalı durumda bir http-proxy var. Nginx’de bir git repo’su buldu. Web tarayıcımda açtığımda <code>403 FORBIDDEN ERROR </code> verdi.</p>
+
 	
 	</div>
   <a type="button" href="/2022/02/25/THM-Borderlands/#more" class="btn btn-default more">Okumaya devam et</a>
@@ -175,11 +180,10 @@ var _hmt = _hmt || [];
 	
 	
 		<h1 id="Recon-Bilgi-Toplama"><a href="#Recon-Bilgi-Toplama" class="headerlink" title="Recon(Bilgi Toplama)"></a>Recon(Bilgi Toplama)</h1><hr>
-<p>Nmap ve whatweb taramasıyla başlıyorum.</p>
+<p>Nmap taramasıyla başlıyorum.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV 10.10.106.251</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-22 23:03 +03</span><br><span class="line">Nmap scan report for 10.10.106.251</span><br><span class="line">Host is up (0.097s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT    STATE SERVICE VERSION</span><br><span class="line">22/tcp  open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp  open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">445/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 19.88 seconds</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">whatweb 10.10.106.251:445/management</span><br><span class="line">/usr/lib/ruby/vendor_ruby/target.rb:188: warning: URI.escape is obsolete</span><br><span class="line">/usr/lib/ruby/vendor_ruby/target.rb:188: warning: URI.escape is obsolete</span><br><span class="line">http://10.10.106.251:445/management [301 Moved Permanently] Apache[2.4.41], Country[RESERVED][ZZ], HTTPServer[Ubuntu Linux][Apache/2.4.41 (Ubuntu)], IP[10.10.106.251], RedirectLocation[http://10.10.106.251:445/management/], Title[301 Moved Permanently]</span><br><span class="line">http://10.10.106.251:445/management/ [200 OK] Apache[2.4.41], Cookies[PHPSESSID], Country[RESERVED][ZZ], Email[oretnom23@gmail.com], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.41 (Ubuntu)], IP[10.10.106.251], JQuery, Script, Title[Traffic Offense Management System]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h1 id="EXPLOITATION-Sistemi-Somurme"><a href="#EXPLOITATION-Sistemi-Somurme" class="headerlink" title="EXPLOITATION(Sistemi Sömürme)"></a>EXPLOITATION(Sistemi Sömürme)</h1><hr>
+
 <p>80 ve 445 portlarında apache sunucu barınıyor ve site <code>PHPSESSID</code>‘den anladığım kadarıyla php ile kodlanmış. Tarayıcıda siteyi açtığımda öntanımlı apache sayfası var.<code>dirb</code> ile sunucudaki alt dizinleri listelemek mantıklı.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dirb 10.10.106.251</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GENERATED WORDS: 4612                                                          </span><br><span class="line"></span><br><span class="line">---- Scanning URL: http://10.10.106.251/ ----</span><br><span class="line">==&gt; DIRECTORY: http://10.10.106.251/admin/                                           </span><br><span class="line">+ http://10.10.106.251/index.html (CODE:200|SIZE:10918)                              </span><br><span class="line">+ http://10.10.106.251/passwd (CODE:200|SIZE:25)                                     </span><br><span class="line">+ http://10.10.106.251/server-status (CODE:403|SIZE:278)                             </span><br><span class="line">+ http://10.10.106.251/shadow (CODE:200|SIZE:25)                                     </span><br><span class="line">                                                      </span><br></pre></td></tr></table></figure>
 	
@@ -369,27 +373,27 @@ com = Top Level Domain(TLD)
 		<h4>etiketler</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/RCE/">RCE<span>1</span></a></li>
-		
-			<li><a href="/tags/DNS/">DNS<span>1</span></a></li>
-		
 			<li><a href="/tags/Docker/">Docker<span>1</span></a></li>
-		
-			<li><a href="/tags/SQLi/">SQLi<span>1</span></a></li>
-		
-			<li><a href="/tags/Linux/">Linux<span>2</span></a></li>
-		
-			<li><a href="/tags/Ruby/">Ruby<span>1</span></a></li>
 		
 			<li><a href="/tags/SUID-GUID/">SUID, GUID<span>1</span></a></li>
 		
-			<li><a href="/tags/Log-Poisoning/">Log Poisoning<span>1</span></a></li>
+			<li><a href="/tags/LFI/">LFI<span>1</span></a></li>
+		
+			<li><a href="/tags/SQLi/">SQLi<span>1</span></a></li>
 		
 			<li><a href="/tags/Php-filters/">Php filters<span>1</span></a></li>
 		
+			<li><a href="/tags/Log-Poisoning/">Log Poisoning<span>1</span></a></li>
+		
 			<li><a href="/tags/Crontab/">Crontab<span>1</span></a></li>
 		
-			<li><a href="/tags/LFI/">LFI<span>1</span></a></li>
+			<li><a href="/tags/DNS/">DNS<span>1</span></a></li>
+		
+			<li><a href="/tags/Linux/">Linux<span>2</span></a></li>
+		
+			<li><a href="/tags/RCE/">RCE<span>1</span></a></li>
+		
+			<li><a href="/tags/Ruby/">Ruby<span>1</span></a></li>
 		
 		 
 		</ul>
