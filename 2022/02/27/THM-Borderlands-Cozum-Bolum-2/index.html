@@ -9,7 +9,8 @@
   <title>THM Borderlands Çözüm Bölüm-2 | order6tyfix</title>
   <meta name="author" content="order6tyfix">
   
-  <meta name="description" content="APK FLAG
+  <meta name="description" content="Makine Linki
+APK FLAG
 Web sitesinin başında News: We are looking for Android BETA testers for the new Mobile App Prototype, please download from here.  yazısı vardı. Yazıda bahsedilen apk dosyasını indirdim. Dosyayı, apk dosyalarını decompile etmekte kullanılan apktool ile decode ettim.
 apktool d mobile-app-prototype.apk
 
@@ -137,7 +138,8 @@ var _hmt = _hmt || [];
 	<div class="mypage">		
 	  		
 
-	  <h1 id="APK-FLAG"><a href="#APK-FLAG" class="headerlink" title="APK FLAG"></a>APK FLAG</h1><hr>
+	  <p><a target="_blank" rel="noopener" href="https://tryhackme.com/room/borderlands">Makine Linki</a></p>
+<h1 id="APK-FLAG"><a href="#APK-FLAG" class="headerlink" title="APK FLAG"></a>APK FLAG</h1><hr>
 <p>Web sitesinin başında <code>News: We are looking for Android BETA testers for the new Mobile App Prototype, please download from here. </code> yazısı vardı. Yazıda bahsedilen apk dosyasını indirdim. Dosyayı, apk dosyalarını decompile etmekte kullanılan <code>apktool</code> ile decode ettim.</p>
 <pre><code>apktool d mobile-app-prototype.apk
 </code></pre>
@@ -149,7 +151,7 @@ var _hmt = _hmt || [];
 </code></pre>
 <span id="more"></span>
 
-<p>ilk bölümde bahsettiğim ve içinde flag olan <code>api.php</code> içinde de plaintext halde api_key bulunuyor:</p>
+<p>İlk bölümde bahsettiğim ve içinde flag olan <code>api.php</code> içinde de plaintext halde api_key bulunuyor:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">require_once(&quot;functions.php&quot;);</span><br><span class="line"></span><br><span class="line">if (!isset($_GET[&#x27;apikey&#x27;]) || ((substr($_GET[&#x27;apikey&#x27;], 0, 20) !== &quot;WEBLhvOJAH8d50Z4y5G5&quot;) &amp;&amp; substr($_GET[&#x27;apikey&#x27;], 0, 20) !== &quot;ANDVOWLDLAS5Q8OQZ2tu&quot; &amp;&amp; substr($_GET[&#x27;apikey&#x27;], 0, 20) !== &quot;GITtFi80llzs4TxqMWtCotiTZpf0HC&quot;))</span><br><span class="line">&#123;</span><br><span class="line">    die(&quot;Invalid API key&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (!isset($_GET[&#x27;documentid&#x27;]))</span><br><span class="line">&#123;</span><br><span class="line">    die(&quot;Invalid document ID&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">if (!isset($_GET[&#x27;newname&#x27;]) || $_GET[&#x27;newname&#x27;] == &quot;&quot;)</span><br><span class="line">&#123;</span><br><span class="line">    die(&quot;invalid document name&quot;);</span><br><span class="line">&#125;</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">$conn = setup_db_connection();</span><br><span class="line"></span><br><span class="line">//UpdateDocumentName($conn, $_GET[&#x27;documentid&#x27;], $_GET[&#x27;newname&#x27;]);</span><br><span class="line"></span><br><span class="line">$docDetails = GetDocumentDetails($conn, $_GET[&#x27;documentid&#x27;]);</span><br><span class="line">if ($docDetails !== null)</span><br><span class="line">&#123;</span><br><span class="line">    //print_r($docDetails);</span><br><span class="line">    echo (&quot;Document ID: &quot;.$docDetails[&#x27;documentid&#x27;].&quot;&lt;br /&gt;&quot;);</span><br><span class="line">    echo (&quot;Document Name: &quot;.$docDetails[&#x27;documentname&#x27;].&quot;&lt;br /&gt;&quot;);</span><br><span class="line">    echo (&quot;Document Location: &quot;.$docDetails[&#x27;location&#x27;].&quot;&lt;br /&gt;&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>Yani elimde artık plaintext ve encrypted halde iki string var.</p>
@@ -219,8 +221,27 @@ var _hmt = _hmt || [];
 
 	<!-- categories -->
     
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/CTF-Cozum/">CTF Çözüm<span>5</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
 
 	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Reverse-Engineering/">Reverse Engineering<span>1</span></a></li> <li><a href="/tags/Apk-Analysis/">Apk Analysis<span>1</span></a></li> <li><a href="/tags/Cryptography/">Cryptography<span>1</span></a></li>
+    </ul>
+	</div>
 		
 
 	<!-- toc -->
