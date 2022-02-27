@@ -133,7 +133,7 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2022/02/25/THM-Borderlands/" >THM Borderlands</a>
+			<a href="/2022/02/25/THM-Borderlands/" >THM Borderlands Çözüm Bölüm-1</a>
 		</h3>
 		</div>
 	<div class="col-md-4">
@@ -147,15 +147,47 @@ var _hmt = _hmt || [];
   <div class="row">
 	
 	
-		<h1 id="RECON-BILGI-TOPLAMA"><a href="#RECON-BILGI-TOPLAMA" class="headerlink" title="RECON(BİLGİ TOPLAMA)"></a>RECON(BİLGİ TOPLAMA)</h1><hr>
+		<h1 id="GIT-ve-WEB-FLAG"><a href="#GIT-ve-WEB-FLAG" class="headerlink" title="(GIT ve WEB FLAG)"></a>(GIT ve WEB FLAG)</h1><hr>
+<h1 id="RECON-BILGI-TOPLAMA"><a href="#RECON-BILGI-TOPLAMA" class="headerlink" title="RECON(BİLGİ TOPLAMA)"></a>RECON(BİLGİ TOPLAMA)</h1><hr>
 <p>Detaylı bir nmap taramsıyla makineyi çözümlemeye başlıyorum. <code>nmap -sS -sV -sC 10.10.213.229</code>.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-25 23:37 +03</span><br><span class="line">Nmap scan report for 10.10.213.229</span><br><span class="line">Host is up (0.091s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT     STATE  SERVICE    VERSION</span><br><span class="line">22/tcp   open   ssh        OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp   open   http       nginx 1.14.0 (Ubuntu)</span><br><span class="line">8080/tcp closed http-proxy</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 15.50 seconds</span><br><span class="line">root@h4ckmachine:/# nmap -sS -sV -sC 10.10.213.229</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-25 23:42 +03</span><br><span class="line">Nmap scan report for 10.10.213.229</span><br><span class="line">Host is up (0.086s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT     STATE  SERVICE    VERSION</span><br><span class="line">22/tcp   open   ssh        OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 f6:50:6e:5a:6f:05:7b:ea:04:26:95:02:e5:a4:a6:37 (RSA)</span><br><span class="line">|   256 09:d4:4c:c1:c2:e9:aa:b0:f9:14:73:88:8f:7a:e0:ab (ECDSA)</span><br><span class="line">|_  256 f1:34:69:76:df:83:3b:78:2d:04:a6:5e:ba:00:b5:4b (ED25519)</span><br><span class="line">80/tcp   open   http       nginx 1.14.0 (Ubuntu)</span><br><span class="line">| http-cookie-flags: </span><br><span class="line">|   /: </span><br><span class="line">|     PHPSESSID: </span><br><span class="line">|_      httponly flag not set</span><br><span class="line">| http-git: </span><br><span class="line">|   10.10.213.229:80/.git/</span><br><span class="line">|     Git repository found!</span><br><span class="line">|     .git/config matched patterns &#x27;user&#x27;</span><br><span class="line">|     Repository description: Unnamed repository; edit this file &#x27;description&#x27; to name the...</span><br><span class="line">|_    Last commit message: added mobile apk for beta testing. </span><br><span class="line">|_http-server-header: nginx/1.14.0 (Ubuntu)</span><br><span class="line">|_http-title: Context Information Security - HackBack 2</span><br><span class="line">8080/tcp closed http-proxy</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 17.42 seconds</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>80 portunda çalışan bir nginx web sunucu var ayrıca 8080 portunda kapalı durumda bir http-proxy var. Nginx’de bir git repo’su buldu. Web tarayıcımda açtığımda <code>403 FORBIDDEN ERROR </code> verdi.</p>
-
+<p>80 portunda çalışan bir nginx web sunucu var ayrıca 8080 portunda kapalı durumda bir http-proxy var.</p>
 	
 	</div>
   <a type="button" href="/2022/02/25/THM-Borderlands/#more" class="btn btn-default more">Okumaya devam et</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2022/02/25/THM Borderlands Çözüm Bölüm-1 /" >THM Borderlands Çözüm Bölüm-1</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2022-02-25  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h1 id="GIT-ve-WEB-FLAG"><a href="#GIT-ve-WEB-FLAG" class="headerlink" title="(GIT ve WEB FLAG)"></a>(GIT ve WEB FLAG)</h1><hr>
+<h1 id="RECON-BILGI-TOPLAMA"><a href="#RECON-BILGI-TOPLAMA" class="headerlink" title="RECON(BİLGİ TOPLAMA)"></a>RECON(BİLGİ TOPLAMA)</h1><hr>
+<p>Detaylı bir nmap taramsıyla makineyi çözümlemeye başlıyorum. <code>nmap -sS -sV -sC 10.10.213.229</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-25 23:37 +03</span><br><span class="line">Nmap scan report for 10.10.213.229</span><br><span class="line">Host is up (0.091s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT     STATE  SERVICE    VERSION</span><br><span class="line">22/tcp   open   ssh        OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp   open   http       nginx 1.14.0 (Ubuntu)</span><br><span class="line">8080/tcp closed http-proxy</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 15.50 seconds</span><br><span class="line">root@h4ckmachine:/# nmap -sS -sV -sC 10.10.213.229</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-25 23:42 +03</span><br><span class="line">Nmap scan report for 10.10.213.229</span><br><span class="line">Host is up (0.086s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT     STATE  SERVICE    VERSION</span><br><span class="line">22/tcp   open   ssh        OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 f6:50:6e:5a:6f:05:7b:ea:04:26:95:02:e5:a4:a6:37 (RSA)</span><br><span class="line">|   256 09:d4:4c:c1:c2:e9:aa:b0:f9:14:73:88:8f:7a:e0:ab (ECDSA)</span><br><span class="line">|_  256 f1:34:69:76:df:83:3b:78:2d:04:a6:5e:ba:00:b5:4b (ED25519)</span><br><span class="line">80/tcp   open   http       nginx 1.14.0 (Ubuntu)</span><br><span class="line">| http-cookie-flags: </span><br><span class="line">|   /: </span><br><span class="line">|     PHPSESSID: </span><br><span class="line">|_      httponly flag not set</span><br><span class="line">| http-git: </span><br><span class="line">|   10.10.213.229:80/.git/</span><br><span class="line">|     Git repository found!</span><br><span class="line">|     .git/config matched patterns &#x27;user&#x27;</span><br><span class="line">|     Repository description: Unnamed repository; edit this file &#x27;description&#x27; to name the...</span><br><span class="line">|_    Last commit message: added mobile apk for beta testing. </span><br><span class="line">|_http-server-header: nginx/1.14.0 (Ubuntu)</span><br><span class="line">|_http-title: Context Information Security - HackBack 2</span><br><span class="line">8080/tcp closed http-proxy</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 17.42 seconds</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>80 portunda çalışan bir nginx web sunucu var ayrıca 8080 portunda kapalı durumda bir http-proxy var.</p>
+	
+	</div>
+  <a type="button" href="/2022/02/25/THM Borderlands Çözüm Bölüm-1 /#more" class="btn btn-default more">Okumaya devam et</a>
 </div>
 
 		
@@ -359,7 +391,7 @@ com = Top Level Domain(TLD)
 		<h4>kategoriler</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/CTF-Cozum/">CTF Çözüm<span>3</span></a></li>
+			<li><a href="/categories/CTF-Cozum/">CTF Çözüm<span>4</span></a></li>
 		
 			<li><a href="/categories/Network-Ag/">Network(Ağ)<span>1</span></a></li>
 		
@@ -373,27 +405,29 @@ com = Top Level Domain(TLD)
 		<h4>etiketler</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Docker/">Docker<span>1</span></a></li>
-		
-			<li><a href="/tags/SUID-GUID/">SUID, GUID<span>1</span></a></li>
-		
-			<li><a href="/tags/LFI/">LFI<span>1</span></a></li>
-		
-			<li><a href="/tags/SQLi/">SQLi<span>1</span></a></li>
-		
-			<li><a href="/tags/Php-filters/">Php filters<span>1</span></a></li>
-		
-			<li><a href="/tags/Log-Poisoning/">Log Poisoning<span>1</span></a></li>
-		
 			<li><a href="/tags/Crontab/">Crontab<span>1</span></a></li>
 		
-			<li><a href="/tags/DNS/">DNS<span>1</span></a></li>
+			<li><a href="/tags/Ruby/">Ruby<span>1</span></a></li>
 		
 			<li><a href="/tags/Linux/">Linux<span>2</span></a></li>
 		
+			<li><a href="/tags/SQLi/">SQLi<span>1</span></a></li>
+		
+			<li><a href="/tags/DNS/">DNS<span>1</span></a></li>
+		
+			<li><a href="/tags/SUID-GUID/">SUID, GUID<span>1</span></a></li>
+		
 			<li><a href="/tags/RCE/">RCE<span>1</span></a></li>
 		
-			<li><a href="/tags/Ruby/">Ruby<span>1</span></a></li>
+			<li><a href="/tags/Php-filters/">Php filters<span>1</span></a></li>
+		
+			<li><a href="/tags/Docker/">Docker<span>1</span></a></li>
+		
+			<li><a href="/tags/Log-Poisoning/">Log Poisoning<span>1</span></a></li>
+		
+			<li><a href="/tags/LFI/">LFI<span>1</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -407,7 +441,11 @@ com = Top Level Domain(TLD)
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2022/02/25/THM-Borderlands/" ><i class="fa fa-file-o"></i>THM Borderlands</a>
+        <a href="/2022/02/25/THM-Borderlands/" ><i class="fa fa-file-o"></i>THM Borderlands Çözüm Bölüm-1</a>
+      </li>
+    
+      <li>
+        <a href="/2022/02/25/THM Borderlands Çözüm Bölüm-1 /" ><i class="fa fa-file-o"></i>THM Borderlands Çözüm Bölüm-1</a>
       </li>
     
       <li>
@@ -420,10 +458,6 @@ com = Top Level Domain(TLD)
     
       <li>
         <a href="/2022/02/01/DNS-Nedir-Nasil-Calisir/" ><i class="fa fa-file-o"></i>DNS Nedir, Nasıl Çalışır?</a>
-      </li>
-    
-      <li>
-        <a href="/2022/01/20/HTB-Knife-Cozum/" ><i class="fa fa-file-o"></i>HTB Knife Çözüm</a>
       </li>
     
   </ul>
