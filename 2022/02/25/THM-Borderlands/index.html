@@ -147,7 +147,7 @@ var _hmt = _hmt || [];
 <p>Nmap, Web sunucusunda bir git repo’su buldu. Web tarayıcımda açtığımda <code>403 FORBIDDEN ERROR </code> aldım. Google’da <code>.git folder exploit 403 forbidden</code> şeklinde arattığımda <a href = "https://pentester.land/tutorials/2018/10/25/source-code-disclosure-via-exposed-git-folder.html">bu siteye</a> denk geldim. Yazının <code>Confirm the bug by manually browsing the .git folder</code> kısmında her git projesinde <code>.git</code> klasörünün içinde ortak olarak bulunan bazı dosyaları açabildiğim takdirde klasör içeriğinin tarafımca erişilebilir olduğunu kanıtlayabileceğim yazıyor.</p>
 </br>
 
-
+<h1 id="EXPLOITATION-SISTEMI-SOMURME"><a href="#EXPLOITATION-SISTEMI-SOMURME" class="headerlink" title="EXPLOITATION(SİSTEMİ SÖMÜRME)"></a>EXPLOITATION(SİSTEMİ SÖMÜRME)</h1><hr>
 <p>Yazıda bahsedilen metotlar çalışıyor. <code>10.10.4.224/.git/logs/HEAD</code> dizinindeki dosyayı indirdiğimde:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">0000000000000000000000000000000000000000 152b2d9976cd37a68fd462af8e4ce21356b5485e Context Information Security &lt;recruitment@contextis.com&gt; 1568122271 +0100	commit (initial): created repo</span><br><span class="line">152b2d9976cd37a68fd462af8e4ce21356b5485e 93bab0a450caaa8c4d2632703636eccc69062bb4 Context Information Security &lt;recruitment@contextis.com&gt; 1568122438 +0100	commit: added under construction page</span><br><span class="line">93bab0a450caaa8c4d2632703636eccc69062bb4 79c9539b6566b06d6dec2755fdf58f5f9ec8822f Context Information Security &lt;recruitment@contextis.com&gt; 1568122828 +0100	commit: added basic prototype of api gateway</span><br><span class="line">79c9539b6566b06d6dec2755fdf58f5f9ec8822f b2f776a52fe81a731c6c0fa896e7f9548aafceab Context Information Security &lt;recruitment@contextis.com&gt; 1568122860 +0100	commit: removed sensitive data</span><br><span class="line">b2f776a52fe81a731c6c0fa896e7f9548aafceab 04f1f411857cc972ae8ed5efcffa298f5f6168fb Context Information Security &lt;recruitment@contextis.com&gt; 1568122932 +0100	commit: added theme</span><br><span class="line">04f1f411857cc972ae8ed5efcffa298f5f6168fb fee5595bb2ba1d1ab005ec3de98367fe5d021e9f Context Information Security &lt;recruitment@contextis.com&gt; 1568123006 +0100	commit: added white paper pdf&#x27;s</span><br><span class="line">fee5595bb2ba1d1ab005ec3de98367fe5d021e9f 6db3cf70b469de942f2f529166088cdfbbd5f764 Context Information Security &lt;recruitment@contextis.com&gt; 1568123071 +0100	commit: added mobile apk for beta testing.</span><br></pre></td></tr></table></figure>
 
@@ -175,12 +175,13 @@ var _hmt = _hmt || [];
 
     
     
-    <a type="button" class="btn btn-default disabled"><i class="fa fa-arrow-circle-o-left"></i>önceki yazı</a>
+    <a href="/2022/02/27/THM-Borderlands-Cozum-Bolum-2/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> önceki yazı</a>
     
 
     <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Ana menü</a>
     
-    <a href="/2022/02/25/THM Borderlands Çözüm Bölüm-1 /" type="button" class="btn btn-default ">sonraki yazı<i
+    <a href="/2022/02/23/THM-Plotted-TMS-Cozum/" type="button" class="btn btn-default ">sonraki yazı<i
                 class="fa fa-arrow-circle-o-right"></i></a>
     
 
