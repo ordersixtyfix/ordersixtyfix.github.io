@@ -9,7 +9,7 @@
   <title>THM Plotted-TMS Çözüm | order6tyfix</title>
   <meta name="author" content="order6tyfix">
   
-  <meta name="description" content="Recon(Bilgi Toplama)
+  <meta name="description" content="Recon
 Nmap taramasıyla başlıyorum.
 1234567891011121314nmap -sS -sV 10.10.106.251Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-22 23:03 +03Nmap scan report for 10.10.106.251Host is up (0.097s latency).Not shown: 997 closed portsPORT    STATE SERVICE VERSION22/tcp  open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)80/tcp  open  http    Apache httpd 2.4.41 ((Ubuntu))445/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernelService detection performed. Please report any incorrect results at https://nmap.org/submit/ .Nmap done: 1 IP address (1 host up) scanned in 19.88 seconds
 
@@ -136,7 +136,7 @@ var _hmt = _hmt || [];
 	<div class="mypage">		
 	  		
 
-	  <h1 id="Recon-Bilgi-Toplama"><a href="#Recon-Bilgi-Toplama" class="headerlink" title="Recon(Bilgi Toplama)"></a>Recon(Bilgi Toplama)</h1><hr>
+	  <h1 id="Recon"><a href="#Recon" class="headerlink" title="Recon"></a>Recon</h1><hr>
 <p>Nmap taramasıyla başlıyorum.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV 10.10.106.251</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-22 23:03 +03</span><br><span class="line">Nmap scan report for 10.10.106.251</span><br><span class="line">Host is up (0.097s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT    STATE SERVICE VERSION</span><br><span class="line">22/tcp  open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp  open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">445/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 19.88 seconds</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -150,7 +150,7 @@ var _hmt = _hmt || [];
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DIRECTORY: http://10.10.106.251:445/management/</span><br></pre></td></tr></table></figure>
 <p>mangement dizini altında bir web sitesi barınıyor.</p>
-<h1 id="EXPLOITATION-Sistemi-Somurme"><a href="#EXPLOITATION-Sistemi-Somurme" class="headerlink" title="EXPLOITATION(Sistemi Sömürme)"></a>EXPLOITATION(Sistemi Sömürme)</h1><hr>
+<h1 id="EXPLOITATION"><a href="#EXPLOITATION" class="headerlink" title="EXPLOITATION"></a>EXPLOITATION</h1><hr>
 <p>Bu dizin işe yarayacak gibi. Login’e tıkladığımda admin giriş paneli geliyor karşıma. İlk denediğim şey admin-admin ile giriş yapmaya çalışmak ama işe yaramıyor. SQLi işe yarayabilir.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username : admin&#x27; OR &#x27;1&#x27;=&#x27;1-- -</span><br><span class="line">password : $RASTGELE</span><br></pre></td></tr></table></figure>
 
@@ -159,7 +159,7 @@ var _hmt = _hmt || [];
 
 <p>Artık giriş yaptım. Panelde dolaşırken avatarımı değiştirebildiğimi farkettim(<a target="_blank" rel="noopener" href="http://10.10.224.198:445/management/admin/?page=user">http://10.10.224.198:445/management/admin/?page=user</a>). Bu atak vektöründen ilerleyerek reverse shell alabilirim. Php ile reverse shell almak mantıklı olur.</p>
 <p>Bu <a target="_blank" rel="noopener" href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">kod</a> işimi görür. Portu 1234 seçtim.Siz $port ve $ip kısımlarını kendinize göre düzenleyeceksiniz. Önce <code>nc -lvnp 1234</code> ile 1234 portunu dinlemeye alıyorum. Ardından shell.php dosyamı seçiyorum ve update’e bastığımda reverse shell, dinlemeye aldığım 1234 portuna geldi.</p>
-<h1 id="PRIV-ESC-Yetki-Yukseltme"><a href="#PRIV-ESC-Yetki-Yukseltme" class="headerlink" title="PRIV ESC(Yetki Yükseltme)"></a>PRIV ESC(Yetki Yükseltme)</h1><hr>
+<h1 id="PRIV-ESC"><a href="#PRIV-ESC" class="headerlink" title="PRIV ESC"></a>PRIV ESC</h1><hr>
 <p>İlk denediğim şey sudo ile çalıştırabileceğim komutları bulmak. Fakat işe yarar bir şey yok. SUID ve GUID bitlerinden de bir şey çıkmadı. Crontab dosyasından belki bir şeyler yakalayabilirim. Bu dosyada periyodik olarak çalıştırılan <a target="_blank" rel="noopener" href="https://ceaksan.com/tr/cronjob-nedir-nasil-kullanilir">cronjob</a>‘ların listesi var. <code>cat /etc/crontab</code> ile dosya içeriğini okuduğumda plot_admin kullanıcısı tarafından her dakika çalıştırılan <code>/var/www/scripts/backup.sh</code> dikkatimi çekti. <code>ls -la</code> ile scripts dizini üzerindeki yetkime baktığımda:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ls -la</span><br><span class="line">total 16</span><br><span class="line">drwxr-xr-x  4 root     root     4096 Oct 28 10:26 .</span><br><span class="line">drwxr-xr-x 14 root     root     4096 Oct 28 07:07 ..</span><br><span class="line">drwxr-xr-x  4 root     root     4096 Oct 28 09:18 html</span><br><span class="line">drwxr-xr-x  2 www-data www-data 4096 Oct 28 09:10 scripts</span><br></pre></td></tr></table></figure>
 

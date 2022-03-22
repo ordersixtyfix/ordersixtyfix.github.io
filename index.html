@@ -136,11 +136,11 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2022/03/01/THM-Borderlands-Cozum-Bolum-3/" >THM Borderlands Çözüm Bölüm-3</a>
+			<a href="/2022/03/20/THM-Skynet-Cozum/" >THM Skynet Çözüm</a>
 		</h3>
 		</div>
 	<div class="col-md-4">
-		<div class="date">post @ 2022-03-01  </div>
+		<div class="date">post @ 2022-03-20  </div>
 		</div>
 	</div>
 	
@@ -150,11 +150,14 @@ var _hmt = _hmt || [];
   <div class="row">
 	
 	
-		<h1 id="SQL-Injection"><a href="#SQL-Injection" class="headerlink" title="SQL Injection"></a>SQL Injection</h1><hr>
-
+		<p><a target="_blank" rel="noopener" href="https://tryhackme.com/room/skynet">Makine Linki</a></p>
+<h1 id="Recon"><a href="#Recon" class="headerlink" title="Recon"></a>Recon</h1><hr>
+<p>Nmap taramasıyla makineyı çözümlemeye naşlıyorum.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV 10.10.104.98</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-03-20 15:59 +03</span><br><span class="line">Nmap scan report for 10.10.104.98</span><br><span class="line">Host is up (0.087s latency).</span><br><span class="line">Not shown: 994 closed ports</span><br><span class="line">PORT    STATE SERVICE     VERSION</span><br><span class="line">22/tcp  open  ssh         OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp  open  http        Apache httpd 2.4.18 ((Ubuntu))</span><br><span class="line">110/tcp open  pop3        Dovecot pop3d</span><br><span class="line">139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)</span><br><span class="line">143/tcp open  imap        Dovecot imapd</span><br><span class="line">445/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)</span><br><span class="line">Service Info: Host: SKYNET; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 14.11 seconds</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Nmap çıktısından makinede birçok farklı servisin çalıştığını gözlemledim. Bu kadar çok servis çalışması atak vektörlerinin olasılıklarını arttırıyor. Özellikle pop3 ve smb servisleri muhtemel bir atak vektörü oluşturabilir.</p>
 	
 	</div>
-  <a type="button" href="/2022/03/01/THM-Borderlands-Cozum-Bolum-3/#more" class="btn btn-default more">Okumaya devam et</a>
+  <a type="button" href="/2022/03/20/THM-Skynet-Cozum/#more" class="btn btn-default more">Okumaya devam et</a>
 </div>
 
 		
@@ -217,7 +220,7 @@ var _hmt = _hmt || [];
 	
 		<p><a target="_blank" rel="noopener" href="https://tryhackme.com/room/borderlands">Makine Linki</a></p>
 <h1 id="GIT-ve-WEB-FLAG"><a href="#GIT-ve-WEB-FLAG" class="headerlink" title="(GIT ve WEB FLAG)"></a>(GIT ve WEB FLAG)</h1><hr>
-<h1 id="RECON-BILGI-TOPLAMA"><a href="#RECON-BILGI-TOPLAMA" class="headerlink" title="RECON(BİLGİ TOPLAMA)"></a>RECON(BİLGİ TOPLAMA)</h1><hr>
+<h1 id="RECON"><a href="#RECON" class="headerlink" title="RECON"></a>RECON</h1><hr>
 <p>Detaylı bir nmap taramsıyla makineyi çözümlemeye başlıyorum. <code>nmap -sS -sV -sC 10.10.213.229</code>.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-25 23:37 +03</span><br><span class="line">Nmap scan report for 10.10.213.229</span><br><span class="line">Host is up (0.091s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT     STATE  SERVICE    VERSION</span><br><span class="line">22/tcp   open   ssh        OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp   open   http       nginx 1.14.0 (Ubuntu)</span><br><span class="line">8080/tcp closed http-proxy</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 15.50 seconds</span><br><span class="line">root@h4ckmachine:/# nmap -sS -sV -sC 10.10.213.229</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-25 23:42 +03</span><br><span class="line">Nmap scan report for 10.10.213.229</span><br><span class="line">Host is up (0.086s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT     STATE  SERVICE    VERSION</span><br><span class="line">22/tcp   open   ssh        OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 f6:50:6e:5a:6f:05:7b:ea:04:26:95:02:e5:a4:a6:37 (RSA)</span><br><span class="line">|   256 09:d4:4c:c1:c2:e9:aa:b0:f9:14:73:88:8f:7a:e0:ab (ECDSA)</span><br><span class="line">|_  256 f1:34:69:76:df:83:3b:78:2d:04:a6:5e:ba:00:b5:4b (ED25519)</span><br><span class="line">80/tcp   open   http       nginx 1.14.0 (Ubuntu)</span><br><span class="line">| http-cookie-flags: </span><br><span class="line">|   /: </span><br><span class="line">|     PHPSESSID: </span><br><span class="line">|_      httponly flag not set</span><br><span class="line">| http-git: </span><br><span class="line">|   10.10.213.229:80/.git/</span><br><span class="line">|     Git repository found!</span><br><span class="line">|     .git/config matched patterns &#x27;user&#x27;</span><br><span class="line">|     Repository description: Unnamed repository; edit this file &#x27;description&#x27; to name the...</span><br><span class="line">|_    Last commit message: added mobile apk for beta testing. </span><br><span class="line">|_http-server-header: nginx/1.14.0 (Ubuntu)</span><br><span class="line">|_http-title: Context Information Security - HackBack 2</span><br><span class="line">8080/tcp closed http-proxy</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 17.42 seconds</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -248,7 +251,7 @@ var _hmt = _hmt || [];
   <div class="row">
 	
 	
-		<h1 id="Recon-Bilgi-Toplama"><a href="#Recon-Bilgi-Toplama" class="headerlink" title="Recon(Bilgi Toplama)"></a>Recon(Bilgi Toplama)</h1><hr>
+		<h1 id="Recon"><a href="#Recon" class="headerlink" title="Recon"></a>Recon</h1><hr>
 <p>Nmap taramasıyla başlıyorum.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV 10.10.106.251</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-22 23:03 +03</span><br><span class="line">Nmap scan report for 10.10.106.251</span><br><span class="line">Host is up (0.097s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT    STATE SERVICE VERSION</span><br><span class="line">22/tcp  open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp  open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">445/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 19.88 seconds</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -282,7 +285,7 @@ var _hmt = _hmt || [];
 	
 	
 		<p><a target="_blank" rel="noopener" href="https://tryhackme.com/room/dogcat">Makine Linki</a></p>
-<h1 id="RECON-Bilgi-Toplama"><a href="#RECON-Bilgi-Toplama" class="headerlink" title="RECON(Bilgi Toplama)"></a>RECON(Bilgi Toplama)</h1><hr>
+<h1 id="RECON"><a href="#RECON" class="headerlink" title="RECON"></a>RECON</h1><hr>
 <p>Nmap taramasıyla makineyı çözümlemeye başlıyorum.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV 10.10.227.89</span><br><span class="line"></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-16 23:34 +03</span><br><span class="line">Nmap scan report for 10.10.227.89</span><br><span class="line">Host is up (0.15s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.38 ((Debian))</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 9.84 seconds</span><br></pre></td></tr></table></figure>
 <p>80 portunda bir apache web sunucusu var. Siteye girdiğimde dog ve cat adında iki seçenek var. Seçenekler önümüze rastgele(!) kedi veya köpek fotoğrafları çıkartıyor. URL’ye baktığım zaman <a target="_blank" rel="noopener" href="https://aycaakcay.medium.com/file-inclusion-nedir-da2f2218383f">LFI(Local File Inclusion)</a>‘a müsait olabileceğini düşünüyorum çünkü web sitesin çalışma prensibi sunucudaki dosyaları çağırmak üzerine. </p>
@@ -442,35 +445,35 @@ com = Top Level Domain(TLD)
 		<h4>etiketler</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/Crontab/">Crontab<span>1</span></a></li>
+		
+			<li><a href="/tags/Docker/">Docker<span>1</span></a></li>
+		
+			<li><a href="/tags/Ruby/">Ruby<span>1</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span>1</span></a></li>
+		
+			<li><a href="/tags/DNS/">DNS<span>1</span></a></li>
+		
 			<li><a href="/tags/LFI/">LFI<span>1</span></a></li>
 		
 			<li><a href="/tags/SUID-GUID/">SUID, GUID<span>1</span></a></li>
 		
-			<li><a href="/tags/Docker/">Docker<span>1</span></a></li>
-		
-			<li><a href="/tags/Linux/">Linux<span>2</span></a></li>
-		
-			<li><a href="/tags/Reverse-Engineering/">Reverse Engineering<span>1</span></a></li>
-		
-			<li><a href="/tags/Log-Poisoning/">Log Poisoning<span>1</span></a></li>
+			<li><a href="/tags/Php-filters/">Php filters<span>1</span></a></li>
 		
 			<li><a href="/tags/Cryptography/">Cryptography<span>1</span></a></li>
 		
-			<li><a href="/tags/SQLi/">SQLi<span>1</span></a></li>
+			<li><a href="/tags/Apk-Analysis/">Apk Analysis<span>1</span></a></li>
 		
 			<li><a href="/tags/RCE/">RCE<span>1</span></a></li>
 		
-			<li><a href="/tags/DNS/">DNS<span>1</span></a></li>
+			<li><a href="/tags/SQLi/">SQLi<span>1</span></a></li>
 		
-			<li><a href="/tags/Crontab/">Crontab<span>1</span></a></li>
+			<li><a href="/tags/Reverse-Engineering/">Reverse Engineering<span>1</span></a></li>
 		
-			<li><a href="/tags/Php-filters/">Php filters<span>1</span></a></li>
+			<li><a href="/tags/Linux/">Linux<span>2</span></a></li>
 		
-			<li><a href="/tags/Apk-Analysis/">Apk Analysis<span>1</span></a></li>
-		
-			<li><a href="/tags/Git/">Git<span>1</span></a></li>
-		
-			<li><a href="/tags/Ruby/">Ruby<span>1</span></a></li>
+			<li><a href="/tags/Log-Poisoning/">Log Poisoning<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -484,7 +487,7 @@ com = Top Level Domain(TLD)
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2022/03/01/THM-Borderlands-Cozum-Bolum-3/" ><i class="fa fa-file-o"></i>THM Borderlands Çözüm Bölüm-3</a>
+        <a href="/2022/03/20/THM-Skynet-Cozum/" ><i class="fa fa-file-o"></i>THM Skynet Çözüm</a>
       </li>
     
       <li>

